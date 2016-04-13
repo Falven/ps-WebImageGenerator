@@ -33,17 +33,17 @@ function main() {
       for (var i = 0; i < openDocs; ++i) {
         var doc = docs[i];
         var large_2x = parseInt(doc.width.toString().replace(/\s(?:px)?/g, ''));
-        genWeb(doc, large, 'large_2x');
+        genWeb(doc, large_2x, 'large_2x');
         var large = large_2x / 2;
         genWeb(doc, large, 'large');
         var medium_2x = large_2x / 1.5;
-        genWeb(doc, large, 'medium_2x');
+        genWeb(doc, medium_2x, 'medium_2x');
         var medium = medium_2x / 2;
-        genWeb(doc, large, 'medium');
+        genWeb(doc, medium, 'medium');
         var small_2x = medium_2x / 3;
-        genWeb(doc, large, 'small_2x');
+        genWeb(doc, small_2x, 'small_2x');
         var small = small_2x / 2;
-        genWeb(doc, large, 'small');
+        genWeb(doc, small, 'small');
       }
    
       app.preferences.rulerUnits = startRulerUnits;
