@@ -32,7 +32,7 @@ function main() {
    
       for (var i = 0; i < openDocs; ++i) {
         var doc = docs[i];
-        var large_2x = doc.width;
+        var large_2x = parseInt(doc.width.toString().replace(/\s(?:px)?/g, ''));
         genWeb(doc, large, 'large_2x');
         var large = large_2x / 2;
         genWeb(doc, large, 'large');
@@ -49,24 +49,25 @@ function main() {
       app.preferences.rulerUnits = startRulerUnits;
       app.preferences.typeUnits = startTypeUnits;
        
-      alert('Generated ' + resesLength + ' JPEGs for '
+      alert('Generated 6 JPEGs for '
       + openDocs + ' documents totalling '
-      + resesLength * openDocs + ' images!');
+      + 6 * openDocs + ' images!');
     }
   }
 }
  
-function genWeb(doc, newWidth, postFix) {
+function genWeb(doc, width, postFix) {
   var oldDoc = doc;
   app.activeDocument = oldDoc;
   var newDoc = oldDoc.duplicate();
+ 
+  var oldWidth = parseInt(oldDoc.width.toString().replace(/\s(?:px)?/g, ''));
+  var oldHeight = parseInt(oldDoc.height.toString().replace(/\s(?:px)?/g, ''));
+ 
+  var newWidth = parseInt(width);
+  var newHeight = (oldHeight / oldWidth) * newWidth;
+ 
   app.activeDocument = newDoc;
- 
-  var oldWidth = parseInt(oldDoc.width.toString().replace(' px', ''));
-  var oldHeight = parseInt(oldDoc.height.toString().replace(' px', ''));
- 
-  var newHeight = (oldHeight / oldWidth) * parseInt(newWidth);
- 
   if(oldWidth > newWidth) {
     newDoc.resizeImage(newWidth + 'px', newHeight + 'px');
   }
