@@ -77,7 +77,7 @@ function genWeb(doc, width, postFix) {
   options.format = SaveDocumentType.JPEG;
   options.includeProfile = false;
   options.optimized = true;
-  options.quality = 100;
+  options.quality = 60;
   options.transparency = true;
  
   var newName = oldDoc.name.replace('.psd', '') + '_' + postFix + '.jpg';
